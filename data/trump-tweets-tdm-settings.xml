@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<TDMSettings>
+    <tdmTokenizerSettings>
+        <tokenizerSettings>
+            <lexiconSpec>
+                <lexicon>English</lexicon>
+                <lexicon>German</lexicon>
+                <lexicon>French</lexicon>
+                <lexicon>Spanish</lexicon>
+                <lexicon>Italian</lexicon>
+                <lexicon>Dutch</lexicon>
+                <lexicon>Portuguese</lexicon>
+                <lexicon>Polish</lexicon>
+                <lexicon>Russian</lexicon>
+                <lexicon>Chinese</lexicon>
+                <lexicon>Japanese</lexicon>
+                <lexicon>Persian</lexicon>
+                <lexicon>Hebrew</lexicon>
+                <lexicon>Chinese</lexicon>
+            </lexiconSpec>
+            <tokenizerType>RBL</tokenizerType>
+        </tokenizerSettings>
+    </tdmTokenizerSettings>
+    <tdmProcessorSettings>
+        <minTextLengthToRemove>0</minTextLengthToRemove>
+        <minVocabulary>0</minVocabulary>
+        <wordStatsCacheFraction>0.4</wordStatsCacheFraction>
+    </tdmProcessorSettings>
+    <tdmVocabularySettings>
+        <maxVocabularyLimit>4000000</maxVocabularyLimit>
+        <minVocabularyLimit>350000</minVocabularyLimit>
+        <maxVocabularyToDocumentsRatio>100.0</maxVocabularyToDocumentsRatio>
+        <minimumDocumentCount>3</minimumDocumentCount>
+        <minimumPhraseDocumentCount>4</minimumPhraseDocumentCount>
+        <minimumCardinalPhraseDocumentCount>100</minimumCardinalPhraseDocumentCount>
+        <maxDocumentCountFraction>1.0</maxDocumentCountFraction>
+        <subphraseMatchCloseness>1.0</subphraseMatchCloseness>
+        <useFrequencyBoundary>true</useFrequencyBoundary>
+    </tdmVocabularySettings>
+</TDMSettings>

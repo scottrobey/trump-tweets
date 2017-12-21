@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<fieldMap name="Default Field Map" version="1.0">
+    <!--
+    Typical 'ID' fields.
+    Fields that uniquely identify a document. Also known as key, or primary key.
+
+    The contents of all fields in the 'ID' category show up in the brs_key field.
+    -->
+<field name="id" category="id"/>
+<field name="tweet" category="bodyText"/>
+<field name="dateSent" category="date_sent"/>
+<field name="retweet"  category="enumeration" faceted="true"/>
+<field name="deleted"  category="enumeration"  faceted="true"/>
+<field name="deletedAfterSeconds" category="numeric" faceted="false"/>
+<field name="dateDeleted" category="date" faceted="false"/>
+
+    <field name="DOCID" category="id"/>
+    <field name="DOC_NO" category="id"/>
+    <field name="DOCNO" category="id"/>
+    <field name="PROD_BEG" category="id"/>
+    <field name="TEMP_BATES" category="id"/>
+    <field name="Temp_Beg" category="id"/>
+    <field name="BEGBATES" category="id"/>
+    <field name="brs_resource_path" category="id"/>
+    <field name="url" category="id"/>
+
+
+    <!--
+    Typical 'text' fields.
+    Fields that contain all or part of the body text of a document.
+
+    The contents of all fields in the 'text' category show up in the brs_original_text field.
+    -->
+    <field name="OCR_TEXT4" category="bodyText"/>
+    <field name="OCR_TEXT3" category="bodyText"/>
+    <field name="OCR_TEXT2" category="bodyText"/>
+    <field name="OCR_TEXT1" category="bodyText"/>
+    <field name="OCR_TEXT" category="bodyText"/>
+    <field name="TEXT4" category="bodyText"/>
+    <field name="TEXT3" category="bodyText"/>
+    <field name="TEXT2" category="bodyText"/>
+    <field name="TEXT1" category="bodyText"/>
+    <field name="TEXT" category="bodyText"/>
+    <field name="Extracted Text" category="bodyText"/>
+
+
+    <!--
+    Typical 'title' fields.
+    Some examples of 'title' fields are the subject of an email, the title of a document, or some
+    other human readable name of a document. Applications that use the analysis results usually
+    want to display the title of the document, so all of the different kinds of titles need to be
+    mapped to a single field.
+
+    The contents of all fields in the 'title' category show up in the brs_title field.
+    -->
+    <field name="subj" category="title"/>
+    <field name="subject" category="title"/>
+    <field name="title" category="title"/>
+
+
+    <!--
+    Typical 'metadata' fields.
+    Short fields that talk about the document instead of being the
+    contents of the document itself.
+
+    All fields in the 'metadata' category show up as fields in the index.
+    -->
+    <field name="AUTHOR" category="metadata"/>
+    <field name="xUrl" category="metadata" addExactText="false"/>
+    <field name="image-source" category="metadata" addExactText="false"/>
+    <field name="image" category="metadata" addExactText="false"/>
+
+
+
+    <!--
+    Typical 'enumeration' fields.
+    Fields that contain a small number of possible values. The values
+    might look like the following: YES, NO, TRUE, FALSE, NORTH, SOUTH, EAST, WEST.
+
+    The important thing is that someone familiar with the data could list all of the possible
+    values and that list would be very small (less than 10).
+    -->
+    <field name="host" category="enumeration"/>
+    <field name="Has_Attachments" category="enumeration"/>
+    <field name="Importance" category="enumeration"/>
+    <field name="Sensitivity" category="enumeration"/>
+
+    <!--
+    Typical 'date' fields.
+    Fields that contain date, time, or date and time information.
+
+    All fields in the 'date' category show up as fields in the index.
+    -->
+    <field name="CREATION_DATE" category="date" faceted="true"/>
+    <field name="DATE" category="date" faceted="true"/>
+    <field name="DATE_RECEIVED" category="date" faceted="true"/>
+    <field name="DATE_RECV" category="date" faceted="true"/>
+    <field name="M_Received_Date" category="date" faceted="true"/>
+    <field name="brs_download_date" category="date" faceted="true"/>
+
+
+
+    <!--
+    Typical 'reference' fields.
+    Fields that contain the unique id of a different document.
+
+    All fields in the 'reference' category show up as fields in the index.
+    -->
+    <field name="RELATED" category="reference"/>
+    <field name="FAMILY_ID" category="family_id"/>
+
+    <!--
+    Common email fields.
+
+    The email threading report and communication analysis both benefit from knowing
+    more of the email fields. If your data does not contain MIME messages, then you
+    must map the email metadata fields you have to fields below.
+    -->
+    <field name="FROM" category="from" usedForExactDup="true"/>
+    <field name="M_From" category="from" usedForExactDup="true"/>
+    <field name="TO" category="to" usedForExactDup="true"/>
+    <field name="M_To" category="to" usedForExactDup="true"/>
+    <field name="CC" category="cc" usedForExactDup="true"/>
+    <field name="M_Cc" category="cc" usedForExactDup="true"/>
+    <field name="BCC" category="bcc" usedForExactDup="true"/>
+    <field name="M_Bcc" category="bcc" usedForExactDup="true"/>
+    <field name="DATE_SENT" category="date_sent" usedForExactDup="true" faceted="true"/>
+    <field name="M_Sent_Date" category="date_sent" usedForExactDup="true" faceted="true"/>
+
+    <!--
+    Less common email fields.
+
+    Currently these fields are mainly used to support the email threading report.
+    The below are just examples of possible names.
+    -->
+    <field name="ATTACH" category="attachment" usedForExactDup="true"/>
+    <field name="PARENT" category="parent_id" usedForExactDup="true"/>
+    <field name="CONVERSATION" category="conversation_index" usedForExactDup="true"/>
+
+    <!--
+    Typical 'path' fields.
+    Path fields provide paths to files that should be loaded as text,
+    and the text should be considered part of the document.
+
+    All fields in the 'text_path' category show up as paths in fields with the names below.
+    The text loaded from a path shows up in brs_original_text.
+
+    If a document has a 'text_path' field and the file it refers to can't be found or successfully
+    loaded, that document won't be imported into the system.
+    -->
+    <!--<field name="FILE_PATH" category="text_path" indexed="false"/>-->
+    <!--<field name="PATH" category="text_path" indexed="false" basePath="data" prefixToRemove="jobRun_22\"/>-->
+
+    <!--
+    Example 'download_url' fields.
+    These are URLs you want BatchTools to download. The fields are downloaded at import time.
+
+    BatchTools tries to be kind to the hosts you are downloading from to avoid having you blacklisted by a host.
+    Because of this, URL downloads are slow. Only 1 URL download is initiated per-host per-second. If all of your
+    downloads are from a single host, at best you will get 1 document per second.
+
+    -->
+    <!--<field name="URL" category="download_url" />-->
+    <!--<field name="SOURCEURL" category="download_url" />-->
+
+</fieldMap>
+

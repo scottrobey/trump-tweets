@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="Default Schema" version="6.0">
+
+    <!--
+    BodyText is a special type, and all bodyText elements will be appended together into one bodyText element.
+    -->
+    <types>
+        <fieldType name="bodyText" baseType="BodyText" filter="true"/>
+        <fieldType name="text" baseType="Text" filter="true"/>
+        <fieldType name="unfilteredBodyText" baseType="BodyText" filter="false"/>
+        <fieldType name="unfilteredText" baseType="Text" filter="false"/>
+        <fieldType name="reference" baseType="Reference"/>
+        <fieldType name="exact" baseType="Exact"/>
+        <fieldType name="numeric" baseType="Numeric"/>
+        <fieldType name="string" baseType="String"/>
+        <fieldType name="autoDate" baseType="Date" format="AUTO"/>
+        <fieldType name="path" baseType="Path" charset="UTF-8" basePath="." prefixToRemove=""/>
+        <fieldType name="downloadUrl" baseType="Url"/>
+    </types>
+
+    <fields>
+        <field name="brs_from" type="string" usedForExactDup="true" faceted="true"/>
+        <field name="brs_to" type="string" usedForExactDup="true"/>
+        <field name="brs_cc" type="string" usedForExactDup="true"/>
+        <field name="brs_bcc" type="string" usedForExactDup="true"/>
+        <field name="brs_date_sent" type="autoDate" usedForExactDup="true" faceted="true"/>
+        <field name="brs_date" type="autoDate" usedForExactDup="true" faceted="true"/>
+        <field name="brs_date_received" type="autoDate" faceted="true"/>
+        <field name="brs_extracted_date" type="autoDate" faceted="true"/>
+        <field name="brs_thread_index" type="string"/>
+        <field name="brs_recipient" type="string" faceted="true"/>
+        <field name="brs_domain" type="string" faceted="true"/>
+        <field name="brs_from_domain" type="string" faceted="true"/>
+        <field name="brs_to_domain" type="string"/>
+        <field name="brs_cc_domain" type="string"/>
+        <field name="brs_bcc_domain" type="string"/>
+        <field name="brs_recipient_domain" type="string" faceted="true"/>
+        <field name="brs_source" type="exact"/>
+        <field name="brs_cache_path" type="string"/>
+
+        <field name="brs_key" type="exact" required="false"/>
+        <field name="brs_original_text" type="unfilteredBodyText" usedForExactDup="true"/>
+        <field name="brs_body_text" type="bodyText" analyzed="true" indexed="false"/>
+        <field name="brs_summary" type="text" indexed="false"/>
+        <field name="brs_small_summary" type="text" addExactText="false"/>
+        <field name="brs_filtered_title" type="text" analyzed="false" indexed="false"/>
+        <field name="brs_title" type="unfilteredText" usedForExactDup="true"/>
+        <field name="x_whole_title" type="exact"/>
+
+        <field name="brs_dup_type" type="exact" faceted="true"/>
+        <field name="pd_doc_id" type="exact"/>
+        <field name="brs_exact_dup_orig" type="exact"/>
+        <field name="brs_near_dup_pivot" type="exact"/>
+
+        <field name="brs_family_id" type="reference"/>
+        <field name="brs_related_set_id" type="numeric"/>
+
+        <field name="FileType" type="string"/>
+        <field name="FileSize" type="numeric"/>
+        <field name="CUSTODIAN" type="exact"/>
+
+        <!-- Fields that hold detected language info -->
+        <field name="brs_language" type="exact"/>
+        <field name="brs_primary_language" type="exact"/>
+
+        <!--
+            Fields mentioned in the default <emailThreading> config (see below) and were not already part of the schema.
+        -->
+        <field name="brs_norm_date" type="string" indexed="false"/>
+        <field name="brs_attachment" type="string" usedForExactDup="false"/>
+        <field name="brs_parent_id" type="reference"/>
+        <field name="brs_conversation_index" type="string"/>
+
+        <!-- Email Threading output -->
+        <field name="brs_emt_thread_id" type="exact"/>
+        <field name="brs_emt_thread_message_count" type="numeric"/>
+        <field name="brs_emt_action" type="exact"/>
+        <field name="brs_emt_unique" type="exact"/>
+        <field name="brs_emt_unique_reason" type="exact"/>
+        <field name="brs_emt_is_message" type="exact"/>
+        <field name="brs_emt_thread_sort" type="numeric"/>
+        <field name="brs_emt_thread_indent" type="numeric"/>
+
+        <field name="error_message" type="unfilteredText"/>
+        <field name="error_code" type="exact"/>
+
+        <!-- Extracted Entities -->
+        <field name="Entity_Credit_Card_Num" type="string" faceted="true"/>
+        <field name="Entity_Email" type="string" faceted="true"/>
+        <field name="Entity_Location" type="string" faceted="true"/>
+        <field name="Entity_Money" type="string" faceted="true"/>
+        <field name="Entity_Nationality" type="string" faceted="true"/>
+        <field name="Entity_Organization" type="string" faceted="true"/>
+        <field name="Entity_Person" type="string" faceted="true"/>
+        <field name="Entity_Personal_ID_Num" type="string" faceted="true"/>
+        <field name="Entity_Phone_Number" type="string" faceted="true"/>
+        <field name="Entity_Product" type="string" faceted="true"/>
+        <field name="Entity_Religion" type="string" faceted="true"/>
+        <field name="Entity_Title" type="string" faceted="true"/>
+        <field name="Entity_Url" type="string" faceted="true"/>
+
+        <!-- custom fields -->
+        <field name="id" type="exact" faceted="false"/>
+        <field name="dateSent" type="autoDate" faceted="false"/>
+        <field name="tweet" type="bodyText" analyzed="true" usedForExactDupe="true" faceted="false"/>
+        <field name="retweet" type="exact" faceted="true"/>
+        <field name="deleted" type="exact" faceted="true"/>
+        <field name="deletedAfterSeconds" type="numeric" faceted="false"/>
+        <field name="dateDeleted" type="autoDate" faceted="false"/>
+        
+        <!--     <uniqueKey name="id" dupKeyMode="Skip"/> -->
+        <!-- make brs_key not required -->
+
+    </fields>
+
+    <fieldOperations>
+        <!-- BACKWARDS_COMPATIBILITY: PD fields renamed BRS -->
+        <copyField source="pd_body_text" dest="brs_body_text"/>
+        <copyField source="pd_summary" dest="brs_summary"/>
+        <copyField source="pd_key" dest="brs_key"/>
+        <copyField source="pd_html" dest="brs_html"/>
+        <copyField source="pd_orig_html" dest="brs_orig_html"/>
+        <copyField source="pd_line_number" dest="brs_line_number"/>
+        <copyField source="pd_source_file" dest="brs_source_file"/>
+        <copyField source="pd_content_encoding" dest="brs_content_encoding"/>
+        <copyField source="pd_download_date" dest="brs_download_date"/>
+        <copyField source="pd_resource_path" dest="brs_resource_path"/>
+
+        <!-- OPTIONAL: PD Email Mappings - remove if not needed -->
+        <copyField source="pd_email_from" dest="brs_from"/>
+        <copyField source="pd_email_to" dest="brs_to"/>
+        <copyField source="pd_email_cc" dest="brs_cc"/>
+        <copyField source="pd_email_bcc" dest="brs_bcc"/>
+        <copyField source="pd_email_subject" dest="brs_subject"/>
+        <copyField source="pd_email_date_sent" dest="brs_date_sent"/>
+        <copyField source="pd_email_sent" dest="brs_date_sent"/>
+        <copyField source="pd_email_date" dest="brs_date"/>
+        <copyField source="pd_email_date_received" dest="brs_date_received"/>
+        <copyField source="pd_email_thread_index" dest="brs_thread_index"/>
+
+        <!-- For each email field with addresses use processAddresses to split into individual addresses -->
+        <!--                                     use downcase to make contents lowercase -->
+        <processAddresses source="brs_from"/>
+        <downcase source="brs_from"/>
+        <processAddresses source="brs_to"/>
+        <downcase source="brs_to"/>
+        <processAddresses source="brs_cc"/>
+        <downcase source="brs_cc"/>
+        <processAddresses source="brs_bcc"/>
+        <downcase source="brs_bcc"/>
+
+        <!-- Now that to, cc, and bcc are split, copy to recipient -->
+        <copyField source="brs_to" dest="brs_recipient"/>
+        <copyField source="brs_cc" dest="brs_recipient"/>
+        <copyField source="brs_bcc" dest="brs_recipient"/>
+
+        <!-- finally make the various email to fields unique -->
+        <unique source="brs_from"/>
+        <unique source="brs_to"/>
+        <unique source="brs_cc"/>
+        <unique source="brs_bcc"/>
+        <unique source="brs_recipient"/>
+
+        <extractDomain source="brs_from" dest="brs_from_domain"/>
+        <extractDomain source="brs_to" dest="brs_to_domain"/>
+        <extractDomain source="brs_cc" dest="brs_cc_domain"/>
+        <extractDomain source="brs_bcc" dest="brs_bcc_domain"/>
+        <extractDomain source="brs_recipient" dest="brs_recipient_domain"/>
+        <copyField source="brs_from_domain" dest="brs_domain"/>
+        <copyField source="brs_recipient_domain" dest="brs_domain"/>
+
+        <unique source="brs_domain"/>
+
+        <!--<extractDate source="brs_body_text" dest="brs_extracted_date"/>-->
+
+        <!-- Example of using the text extraction operation -->
+        <textFromHtml source="orightml" dest="brs_body_text" copyIfNoText="true"/>
+        <textFromHtml source="brs_download_html" dest="brs_body_text" copyIfNoText="true"/>
+
+        <!-- Date normalization for email threading -->
+        <normalizeDate source="brs_date_sent" dest="brs_norm_date"/>
+
+        <!-- Split field example for splitting "fieldName" at every ';' found in it -->
+        <!-- <splitField source="field" delimiter=";"/>  -->
+
+        <!--
+          ** PD INTERNAL : DO NOT EDIT **
+        -->
+        <!-- Preserve original text -->
+        <copyField source="brs_body_text" dest="brs_original_text"/>
+        <!-- Map subject to title -->
+        <copyField source="brs_subject" dest="brs_title"/>
+
+    </fieldOperations>
+
+    <processFieldOperations>
+        <extractEntity source="brs_body_text" destPrefix="entity_"/>
+
+        <downcase source="entity_credit_card_num"/>
+        <downcase source="entity_email"/>
+        <downcase source="entity_location"/>
+        <downcase source="entity_money"/>
+        <downcase source="entity_nationality"/>
+        <downcase source="entity_organization"/>
+        <downcase source="entity_person"/>
+        <downcase source="entity_personal_id_num"/>
+        <downcase source="entity_phone_number"/>
+        <downcase source="entity_product"/>
+        <downcase source="entity_religion"/>
+        <downcase source="entity_title"/>
+        <downcase source="entity_url"/>
+
+        <unique source="entity_credit_card_num"/>
+        <unique source="entity_email"/>
+        <unique source="entity_location"/>
+        <unique source="entity_money"/>
+        <unique source="entity_nationality"/>
+        <unique source="entity_organization"/>
+        <unique source="entity_person"/>
+        <unique source="entity_personal_id_num"/>
+        <unique source="entity_phone_number"/>
+        <unique source="entity_product"/>
+        <unique source="entity_religion"/>
+        <unique source="entity_title"/>
+        <unique source="entity_url"/>
+    </processFieldOperations>
+
+    <indexFieldOperations>
+        <!-- create small summary field -->
+        <copyField source="brs_body_text" dest="brs_small_summary" length="512"/>
+        <!-- create lower-cased whole title match field -->
+        <copyField source="brs_title" dest="x_whole_title" toKeyword="true"/>
+
+        <!-- Count the number of values in Comm Analysis fields -->
+        <countValues source="brs_to"/>
+        <countValues source="brs_cc"/>
+        <countValues source="brs_bcc"/>
+        <countValues source="brs_recipient"/>
+        <countValues source="brs_to_domain"/>
+        <countValues source="brs_cc_domain"/>
+        <countValues source="brs_bcc_domain"/>
+        <countValues source="brs_recipient_domain"/>
+        <countValues source="brs_domain"/>
+    </indexFieldOperations>
+
+    <categories>
+        <category name="id" mapField="brs_key"/>
+        <category name="bodyText" mapField="brs_body_text"/>
+        <category name="title" mapField="brs_title"/>
+        <category name="from" mapField="brs_from"/>
+        <category name="to" mapField="brs_to"/>
+        <category name="cc" mapField="brs_cc"/>
+        <category name="bcc" mapField="brs_bcc"/>
+        <category name="date_sent" mapField="brs_date_sent"/>
+        <category name="attachment" mapField="brs_attachment"/>
+        <category name="parent_id" mapField="brs_parent_id"/>
+        <category name="conversation_index" mapField="brs_conversation_index"/>
+        <category name="family_id" mapField="brs_family_id"/>
+        <category name="text" mapType="text"/>
+        <category name="date" mapType="autoDate"/>
+        <category name="enumeration" mapType="exact"/>
+        <category name="metadata" mapType="string"/>
+        <category name="reference" mapType="reference"/>
+        <category name="text_path" mapType="path"/>
+        <category name="download_url" mapType="downloadUrl"/>
+        <category name="numeric" mapType="numeric"/>
+    </categories>
+
+    <!-- dupKeyMode may be "Skip" or "MakeUnique"  -->
+    <uniqueKey name="id" dupKeyMode="Skip"/>
+    <maxFieldKiB KiB="16384"/>
+    <minBodyChars size="0" letterOnly="false"/>
+    <allowedBodyLang>
+        <allow lang="any"/>
+        <!-- <allow lang="en"/> -->
+
+        <!-- See http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes for details
+             on what languages the below supported codes map to
+
+             Supported language codes:
+             af, ar, bg, bn, cs, da, de, el, en, es, et, fa, fi, fr, gu, he, hi, hr,
+             hu, id, it, ja, kn, ko, lt, lv, mk, ml, mr, ne, nl, no, pa, pl, pt, ro,
+             ru, sk, sl, so, sq, sv, sw, ta, te, th, tl, tr, uk, ur, vi, zh-cn, zh-tw
+        -->
+    </allowedBodyLang>
+
+    <graphs>
+        <emailGraph name="commAnalysis" source="brs_from">
+            <arc dest="brs_to" type="to"/>
+            <arc dest="brs_cc" type="cc"/>
+            <arc dest="brs_bcc" type="bcc"/>
+        </emailGraph>
+    </graphs>
+
+    <emailThreading body="brs_body_text" orig="brs_original_text" subj="brs_title" from="brs_from" to="brs_to" cc="brs_cc"
+                    bcc="brs_bcc" date="brs_norm_date" attch="brs_attachment" parent="brs_parent_id"
+                    conv="brs_conversation_index" containment="1.0" related="1.0" family="brs_family_id"/>
+
+    <!-- If -1, base threshold on data set size -->
+    <commonWordThreshold threshold="-1"/>
+
+    <!-- This section maps common names to specific field names.
+    An application (such as Brainspace) will get the schema file from the DataSet output config directory.  It will
+    specify the application name to look for, then use the field mapping for that application to get the actual
+    field name for the field they want.  This can be used to easily remap fields without needing to recompile.
+    For example, we can change the summaryField map from brs_small_summary to brs_original_text, then our application
+    will get "brs_original_text" as the field name for the summary and our Lucene queries will be passed that
+    string.  Every field that we intend to query consistently (i.e. not raw Lucene from the user) should be
+    represented in the application map.
+    -->
+    <application name="discovery">
+        <idField name="brs_key"/>
+        <summaryField name="brs_small_summary"/>
+        <textField name="brs_original_text"/>
+        <titleField name="brs_title"/>
+        <wholeTitleField name="x_whole_title"/>
+        <dupType name="brs_dup_type"/>
+        <language name="brs_language"/>
+        <primaryLanguage name="brs_primary_language"/>
+
+        <commAnalysisFrom name="brs_from"/>
+        <commAnalysisTo name="brs_to"/>
+        <commAnalysisCc name="brs_cc"/>
+        <commAnalysisBcc name="brs_bcc"/>
+        <commAnalysisRecipient name="brs_recipient"/>
+        <commAnalysisFromDomain name="brs_from_domain"/>
+        <commAnalysisToDomain name="brs_to_domain"/>
+        <commAnalysisCcDomain name="brs_cc_domain"/>
+        <commAnalysisBccDomain name="brs_bcc_domain"/>
+        <commAnalysisRecipientDomain name="brs_recipient_domain"/>
+        <commAnalysisDomain name="brs_domain"/>
+
+        <familyId name="brs_family_id"/>
+        <relatedSetId name="brs_related_set_id"/>
+
+        <fileType name="FileType"/>
+        <custodian name="CUSTODIAN"/>
+        <dateSent name="brs_date_sent"/>
+
+        <emtThreadId name="brs_emt_thread_id"/>
+        <emtThreadMessageCount name="brs_emt_thread_message_count"/>
+        <emtAction name="brs_emt_action"/>
+        <emtUnique name="brs_emt_unique"/>
+        <emtUniqueReason name="brs_emt_unique_reason"/>
+        <emtIsMessage name="brs_emt_is_message"/>
+        <emtThreadSort name="brs_emt_thread_sort"/>
+        <emtThreadIndent name="brs_emt_thread_indent"/>
+    </application>
+</schema>
+
