@@ -9,3 +9,4 @@ Analyzation and cataloging of Trump Tweets and Speeches
  * https://rapidminer.com/ - platform for analytics and machine learning
 * Simple web page to showcase analytics and display documents for searching
   * Hosting: https://www.quora.com/Are-there-any-free-webspace-hosting-sites-for-Java-or-JSP
+  * Redhat based: https://hub.openshift.com/quickstarts/196-scala
