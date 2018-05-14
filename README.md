@@ -6,6 +6,6 @@ Analyzation and cataloging of Trump Tweets and Speeches
 * Use Postgres to store document, and do full test searching: https://www.postgresql.org/docs/9.5/static/textsearch-intro.html
 * Run language analytics: clustering, sentiment analysis, etc. https://www.softwareadvice.com/resources/easiest-to-use-free-and-open-source-text-analysis-software/
 * Machine learning: build a model based on Trump tweets and use it to predict responses to world events, etc.
-* * https://rapidminer.com/ - platform for analytics and machine learning
+ * https://rapidminer.com/ - platform for analytics and machine learning
 * Simple web page to showcase analytics and display documents for searching
   * Hosting: https://www.quora.com/Are-there-any-free-webspace-hosting-sites-for-Java-or-JSP
