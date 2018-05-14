@@ -8,3 +8,4 @@ Analyzation and cataloging of Trump Tweets and Speeches
 * Machine learning: build a model based on Trump tweets and use it to predict responses to world events, etc.
 * * https://rapidminer.com/ - platform for analytics and machine learning
 * Simple web page to showcase analytics and display documents for searching
+  * Hosting: https://www.quora.com/Are-there-any-free-webspace-hosting-sites-for-Java-or-JSP
